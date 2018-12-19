@@ -1,0 +1,50 @@
+#include "pch.h"
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+	cout << "Vvedite razm matric (N x N)" << endl;
+
+	int n, i_row, i_column, maxtek;
+
+	cin >> n;
+
+	int **arr = new int*[n];
+
+	for (int i = 0; i < n; i++)
+	{
+		arr[i] = new int [n] ;
+	}
+	
+	for (int i_row = 0; i_row < n; i_row++)
+	{
+		for (int i_column = 0; i_column < n; i_column++)
+		{
+			cin >> arr[i_row][i_column];
+		}
+	}
+	cout << endl;
+
+	for (int i_row = 0; i_row < n; i_row++) 
+	{
+		for (int i_column = 0; i_column < n; i_column++)
+			cout << setw(4) << arr[i_row][i_column] << "  ";
+		cout << endl;
+		
+	}
+
+	maxtek = arr[1][n - 1];
+	for (i_row = 1; i_row < n; i_row++)
+		for (i_column = 1; i_column <= i_row; i_column++)
+			if (arr[i_row][n - i_column] >= maxtek) maxtek = arr[i_row][n - i_column];
+
+	cout << endl << "max=" << maxtek;
+
+	for (int i = 0; i < n; i++)
+		delete[]arr[i];
+		delete[] arr;
+	return 0;
+}
