@@ -1,0 +1,52 @@
+
+#include "pch.h"
+#include <iostream>
+#include <math.h>
+#include <conio.h>
+
+using namespace std;
+
+void Out_Rez(double t, double sx, double yx)
+{
+	cout << "When x =" << t << " \tS(x) =" << sx << " \tY(x) =" << yx << " \t|Razn| =" << fabs(yx - sx) << endl;
+}
+
+int factorial(int q)
+{
+	long double factor = 1;
+	for (int i = q; i > 0; i--)
+	{
+		factor *= i;
+	}
+	return factor;
+}
+
+double fun1(double r)
+{
+	return 2 * (pow(cos(r), 2) - 1);
+}
+double fun2(double x, double k)
+{
+	return pow(-1, k)*pow(2 * x, 2 * k);
+}
+
+int main(){
+double sum, a, b, h, x, y;
+int k, n, fact, j;
+cout << "Inpute a, b, h, n: "; 
+cin >> a >> b >> h >> n;
+for (x = a; x <= b; x += h)
+{
+	y = fun1(x);
+	sum = 0;
+	for (k = 1; k <= n; k++)
+	{
+		j = 2 * k;
+		fact = factorial(j);
+		sum += fun2(x, k) / fact;
+	}
+	Out_Rez(x, sum, y);
+} 
+
+	return 0;
+}
